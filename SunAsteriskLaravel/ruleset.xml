@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset
+    name="SunAsteriskLaravel"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../vendor/squizlabs/php_codesniffer/phpcs.xsd"
+>
+    <description>Sun* R&amp;D coding standard for Laravel projects</description>
+
+    <rule ref="SunAsterisk"/>
+
+    <!-- Migrations can have no namespace -->
+    <rule ref="PSR1.Classes.ClassDeclaration">
+        <exclude-pattern>database</exclude-pattern>
+    </rule>
+
+    <!-- Allow snake case method name in tests -->
+    <rule ref="PSR1.Methods.CamelCapsMethodName">
+        <exclude-pattern>test</exclude-pattern>
+    </rule>
+
+    <!-- Migrations classes are different from file names -->
+    <rule ref="Squiz.Classes.ClassFileName">
+        <exclude-pattern>database</exclude-pattern>
+    </rule>
+
+    <!-- Forbid dd & dump -->
+    <rule ref="Generic.PHP.ForbiddenFunctions">
+        <properties>
+            <property name="forbiddenFunctions" type="array">
+                <element key="dd" value="null"/>
+                <element key="dump" value="null"/>
+            </property>
+        </properties>
+    </rule>
+
+    <!-- Collections must provide contained type -->
+    <rule ref="SlevomatCodingStandard.Commenting.UselessFunctionDocComment">
+        <properties>
+            <property name="traversableTypeHints" type="array">
+                <element value="Illuminate\Database\Eloquent\Collection"/>
+                <element value="Illuminate\Support\Collection"/>
+            </property>
+        </properties>
+    </rule>
+</ruleset>
