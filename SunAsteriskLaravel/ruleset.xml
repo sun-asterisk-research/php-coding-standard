@@ -8,6 +8,10 @@
 
     <rule ref="SunAsterisk"/>
 
+    <!-- Exclude framework files -->
+    <exclude-pattern>server.php</exclude-pattern>
+    <exclude-pattern>bootstrap/app.php</exclude-pattern>
+
     <!-- Migrations can have no namespace -->
     <rule ref="PSR1.Classes.ClassDeclaration">
         <exclude-pattern>database</exclude-pattern>
