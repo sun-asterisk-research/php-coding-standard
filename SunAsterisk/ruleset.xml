@@ -7,15 +7,16 @@
     <description>Sun* R&amp;D PHP coding standard</description>
 
     <rule ref="PSR12">
-        <!-- Prefer Slevomat sniffs over these -->
+        <!-- Prefer Slevomat & Squiz sniffs over these -->
+        <exclude name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"/>
+        <exclude name="PSR2.Namespaces.NamespaceDeclaration.BlankLineAfter"/>
         <exclude name="PSR2.Namespaces.UseDeclaration.SpaceAfterLastUse"/>
         <exclude name="PSR12.Files.FileHeader"/>
-        <exclude name="PSR2.Namespaces.NamespaceDeclaration.BlankLineAfter"/>
-        <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingAfterVariadic"/>
         <exclude name="PSR12.Functions.ReturnTypeDeclaration"/>
-        <exclude name="PSR12.Traits.UseDeclaration"/>
         <exclude name="PSR12.Functions.NullableTypeDeclaration.WhitespaceFound"/>
-        <exclude name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"/>
+        <exclude name="PSR12.Operators.OperatorSpacing"/>
+        <exclude name="PSR12.Traits.UseDeclaration"/>
+        <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingAfterVariadic"/>
     </rule>
 
     <rule ref="Generic.Arrays.ArrayIndent"/>
@@ -88,6 +89,7 @@
     <rule ref="Squiz.PHP.LowercasePHPFunctions"/>
     <rule ref="Squiz.PHP.NonExecutableCode"/>
     <rule ref="Squiz.Scope.StaticThisUsage"/>
+    <rule ref="Squiz.Strings.ConcatenationSpacing"/>
     <rule ref="Squiz.Strings.DoubleQuoteUsage">
         <exclude name="Squiz.Strings.DoubleQuoteUsage.ContainsVar" />
     </rule>
@@ -106,6 +108,7 @@
             <property name="ignoreNewlines" value="true"/>
         </properties>
     </rule>
+    <rule ref="Squiz.WhiteSpace.OperatorSpacing"/>
     <rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
     <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace"/>
 
@@ -121,6 +124,16 @@
         </properties>
     </rule>
     <rule ref="SlevomatCodingStandard.Classes.ModernClassNameReference"/>
+    <rule ref="SlevomatCodingStandard.Classes.RequireSingleLineMethodSignature">
+        <properties>
+            <property name="maxLineLength" value="100"/>
+        </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Classes.RequireMultiLineMethodSignature">
+        <properties>
+            <property name="maxLineLength" value="101"/>
+        </properties>
+    </rule>
     <!-- Forbid Interface/Trait prefix/suffix for interface & trait -->
     <rule ref="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming"/>
     <rule ref="SlevomatCodingStandard.Classes.SuperfluousTraitNaming"/>
@@ -132,16 +145,15 @@
     <rule ref="SlevomatCodingStandard.Commenting.ForbiddenAnnotations">
         <properties>
             <property name="forbiddenAnnotations" type="array">
-                <element value="@api"/>
                 <element value="@author"/>
+                <element value="@created"/>
+                <element value="@version"/>
+                <element value="@package"/>
+                <element value="@subpackage"/>
                 <element value="@category"/>
                 <element value="@copyright"/>
-                <element value="@created"/>
                 <element value="@license"/>
-                <element value="@package"/>
-                <element value="@since"/>
-                <element value="@subpackage"/>
-                <element value="@version"/>
+                <element value="@api"/>
             </property>
         </properties>
     </rule>
@@ -201,11 +213,7 @@
     <rule ref="SlevomatCodingStandard.TypeHints.NullTypeHintOnLastPosition"/>
     <rule ref="SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue"/>
     <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHintSpacing"/>
-    <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing">
-        <properties>
-            <property name="spacesCountBeforeColon" value="1"/>
-        </properties>
-    </rule>
+    <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing"/>
     <rule ref="SlevomatCodingStandard.TypeHints.UselessConstantTypeHint"/>
     <rule ref="SlevomatCodingStandard.Variables.DuplicateAssignmentToVariable"/>
     <rule ref="SlevomatCodingStandard.Variables.UnusedVariable">
