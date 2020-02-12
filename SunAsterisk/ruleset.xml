@@ -178,7 +178,6 @@
         </properties>
     </rule>
     <rule ref="SlevomatCodingStandard.ControlStructures.DisallowYodaComparison"/>
-    <rule ref="SlevomatCodingStandard.ControlStructures.EarlyExit"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.JumpStatementsSpacing"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.UselessIfConditionWithReturn"/>
     <rule ref="SlevomatCodingStandard.ControlStructures.UselessTernaryOperator"/>
