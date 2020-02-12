@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset
+    name="Coding standard for sun-asterisk/coding-standard"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="./vendor/squizlabs/php_codesniffer/phpcs.xsd"
+>
+    <arg name="tab-width" value="4"/>
+    <arg name="parallel" value="75"/>
+    <arg name="colors"/>
+    <arg value="np"/>
+
+    <file>SunAsterisk/Sniffs</file>
+
+    <exclude-pattern>vendor/</exclude-pattern>
+
+    <rule ref="SunAsterisk"></rule>
+</ruleset>
