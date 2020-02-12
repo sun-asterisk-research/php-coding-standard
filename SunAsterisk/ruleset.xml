@@ -36,6 +36,7 @@
         <properties>
             <property name="lineLimit" value="120"/>
             <property name="absoluteLineLimit" value="160"/>
+            <property name="ignoreComments" value="true"/>
         </properties>
     </rule>
     <rule ref="Generic.Files.OneClassPerFile"/>
