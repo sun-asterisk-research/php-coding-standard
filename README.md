@@ -2,6 +2,8 @@
 
 [![Latest Stable Version](https://poser.pugx.org/sun-asterisk/coding-standard/v/stable)](https://packagist.org/packages/sun-asterisk/coding-standard)
 
+Sun* coding standard for [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer).
+
 ## Installation
 
 Using composer
@@ -10,9 +12,9 @@ Using composer
 composer require --dev sun-asterisk/coding-standard
 ```
 
-## Using
+## Usage
 
-Add the standard to your project's `phpcs.xml`
+Add the `SunAsterisk` standard to your project's `phpcs.xml`:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -21,7 +23,16 @@ Add the standard to your project's `phpcs.xml`
 </ruleset>
 ```
 
-A standard for Laravel projects is also included. You can use the standard as below
+Or use it on the command line
+
+```sh
+vendor/bin/phpcs --standard=SunAsterisk <file or directory to check>
+```
+
+### Laravel
+
+The `SunAsteriskLaravel` standard is extended for Laravel projects.
+You can use it as below:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
