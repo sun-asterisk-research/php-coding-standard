@@ -30,7 +30,7 @@
     <!-- Forbid dd & dump -->
     <rule ref="Generic.PHP.ForbiddenFunctions">
         <properties>
-            <property name="forbiddenFunctions" type="array">
+            <property name="forbiddenFunctions" type="array" extend="true">
                 <element key="dd" value="null"/>
                 <element key="dump" value="null"/>
             </property>
