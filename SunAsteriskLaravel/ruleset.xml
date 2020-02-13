@@ -12,21 +12,6 @@
     <exclude-pattern>server.php</exclude-pattern>
     <exclude-pattern>bootstrap/app.php</exclude-pattern>
 
-    <!-- Migrations can have no namespace -->
-    <rule ref="PSR1.Classes.ClassDeclaration">
-        <exclude-pattern>database</exclude-pattern>
-    </rule>
-
-    <!-- Allow snake case method name in tests -->
-    <rule ref="PSR1.Methods.CamelCapsMethodName">
-        <exclude-pattern>test</exclude-pattern>
-    </rule>
-
-    <!-- Migrations classes are different from file names -->
-    <rule ref="Squiz.Classes.ClassFileName">
-        <exclude-pattern>database</exclude-pattern>
-    </rule>
-
     <!-- Forbid dd & dump -->
     <rule ref="Generic.PHP.ForbiddenFunctions">
         <properties>
@@ -37,6 +22,16 @@
         </properties>
     </rule>
 
+    <!-- Migrations can have no namespace -->
+    <rule ref="PSR1.Classes.ClassDeclaration">
+        <exclude-pattern>database</exclude-pattern>
+    </rule>
+
+    <!-- Allow snake case method name in tests -->
+    <rule ref="PSR1.Methods.CamelCapsMethodName">
+        <exclude-pattern>test</exclude-pattern>
+    </rule>
+
     <!-- Collections must provide contained type -->
     <rule ref="SlevomatCodingStandard.Commenting.UselessFunctionDocComment">
         <properties>
@@ -45,5 +40,14 @@
                 <element value="Illuminate\Support\Collection"/>
             </property>
         </properties>
+    </rule>
+
+    <!-- Migrations classes are different from file names -->
+    <rule ref="Squiz.Classes.ClassFileName">
+        <exclude-pattern>database</exclude-pattern>
+    </rule>
+
+    <rule ref="SunAsterisk.Laravel.NoEnv">
+        <exclude-pattern>config</exclude-pattern>
     </rule>
 </ruleset>
