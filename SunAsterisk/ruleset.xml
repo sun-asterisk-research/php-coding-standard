@@ -80,7 +80,7 @@
     </rule>
     <rule ref="SlevomatCodingStandard.Classes.RequireMultiLineMethodSignature">
         <properties>
-            <property name="maxLineLength" value="101"/>
+            <property name="minLineLength" value="120"/>
         </properties>
     </rule>
     <!-- Forbid Interface/Trait prefix/suffix for interface & trait -->
