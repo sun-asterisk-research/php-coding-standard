@@ -50,4 +50,7 @@
     <rule ref="SunAsterisk.Laravel.NoEnv">
         <exclude-pattern>config</exclude-pattern>
     </rule>
+    <rule ref="SunAsterisk.Laravel.NoClosureRoute">
+        <include-pattern>routes</include-pattern>
+    </rule>
 </ruleset>

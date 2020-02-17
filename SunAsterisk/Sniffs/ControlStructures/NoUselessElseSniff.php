@@ -33,16 +33,16 @@ class NoUselessElseSniff implements Sniff
 
     /**
      * @param File $file The file being scanned
-     * @param int  $pos  Current token position
+     * @param int  $stackPtr Current token position
      */
-    public function process(File $file, $pos): void
+    public function process(File $file, $stackPtr): void
     {
         $tokens = $file->getTokens();
 
-        if ($tokens[$pos]['code'] === T_ELSE) {
-            $this->processElse($file, $pos);
+        if ($tokens[$stackPtr]['code'] === T_ELSE) {
+            $this->processElse($file, $stackPtr);
         } else {
-            $this->processElseIf($file, $pos);
+            $this->processElseIf($file, $stackPtr);
         }
     }
 

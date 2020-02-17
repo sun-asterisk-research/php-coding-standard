@@ -26,13 +26,17 @@ class NoEnvSniff implements Sniff
         T_IMPLEMENTS      => true,
     ];
 
-    public function register()
+    public function register(): array
     {
         return [
             T_STRING,
         ];
     }
 
+    /**
+     * @param File $phpcsFile The file being scanned
+     * @param int  $stackPtr Current token position
+     */
     public function process(File $phpcsFile, $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();
