@@ -41,6 +41,9 @@
             </property>
         </properties>
     </rule>
+    <rule ref="SlevomatCodingStandard.Commenting.InlineDocCommentDeclaration.MissingVariable">
+        <exclude-pattern>database/factories</exclude-pattern>
+    </rule>
 
     <!-- Migrations classes are different from file names -->
     <rule ref="Squiz.Classes.ClassFileName">
