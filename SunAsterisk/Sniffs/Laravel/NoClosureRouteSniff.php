@@ -55,23 +55,27 @@ class NoClosureRouteSniff implements Sniff
             return;
         }
 
-        $methodName = $phpcsFile->findNext(Tokens::$emptyTokens, $stackPtr + 1, null, true);
-        if (!in_array($tokens[$methodName]['content'], static::$routeDefiningMethods)) {
-            // Not defining a route
+        $routeDefiningMethod = $this->findRouteDefiningMethod($phpcsFile, $stackPtr);
+        if (!$routeDefiningMethod) {
+            // Could not find a route defining method
             return;
         }
 
-        $openParenthesis = $phpcsFile->findNext(Tokens::$emptyTokens, $methodName + 1, null, true);
+        $openParenthesis = $phpcsFile->findNext(Tokens::$emptyTokens, $routeDefiningMethod + 1, null, true);
         if (!$this->isValidParenthesesPair($phpcsFile, $openParenthesis)) {
             // Not a function call
             return;
         }
 
         // Route::match's route handler is the 3rd argument
-        $handleArgumentPosition = $tokens[$methodName]['content'] === 'match' ? 3 : 2;
+        $routeHandlerArgumentPosition = $tokens[$routeDefiningMethod]['content'] === 'match' ? 3 : 2;
 
         try {
-            $handler = $this->findFunctionArgument($phpcsFile, $openParenthesis, $handleArgumentPosition);
+            $handler = $this->findFunctionArgument($phpcsFile, $openParenthesis, $routeHandlerArgumentPosition);
+            // Could not find the handler
+            if (!$handler) {
+                return;
+            }
         } catch (Exception $e) {
             return;
         }
@@ -82,14 +86,33 @@ class NoClosureRouteSniff implements Sniff
     }
 
     /**
+     * Get pointer to the route defining method
+     *
+     * @param  File $phpcsFile The file being scanned
+     * @param  int $start The starting position of the Route call
+     * @return int|false
+     */
+    private function findRouteDefiningMethod(File $phpcsFile, int $start)
+    {
+        $endOfStatement = $phpcsFile->findEndOfStatement($start);
+        $found = $phpcsFile->findNext(Tokens::$functionNameTokens, $start + 1, $endOfStatement);
+
+        while ($found > 0 && !$this->isRouteDefiningMethod($phpcsFile, $found)) {
+            $found = $phpcsFile->findNext(Tokens::$functionNameTokens, $found + 1, $endOfStatement);
+        }
+
+        return $found;
+    }
+
+    /**
      * Get pointer to argument of a function call
      *
      * @param  File $phpcsFile The file being scanned
      * @param  int  $openParenthesis The opening parenthesis pointer
      * @param  int  $position The position of the argument to find
-     * @return int
+     * @return int|false
      */
-    private function findFunctionArgument(File $phpcsFile, int $openParenthesis, int $position = 1): int
+    private function findFunctionArgument(File $phpcsFile, int $openParenthesis, int $position = 1)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -120,6 +143,13 @@ class NoClosureRouteSniff implements Sniff
         }
 
         return $phpcsFile->findNext(Tokens::$emptyTokens, $ptr, null, true);
+    }
+
+    private function isRouteDefiningMethod(File $phpcsFile, int $stackPtr): bool
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        return in_array($tokens[$stackPtr]['content'], static::$routeDefiningMethods);
     }
 
     private function isValidParenthesesPair(File $phpcsFile, int $stackPtr): bool
