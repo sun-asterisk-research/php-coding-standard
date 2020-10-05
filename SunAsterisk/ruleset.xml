@@ -240,7 +240,18 @@
         </properties>
     </rule>
     <rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
-    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace"/>
+
+    <!-- Forbid superfluous whitespaces -->
+    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
+        <properties>
+            <!-- Also check blank lines, turned ignored by PSR-2 -> turning back on -->
+            <property name="ignoreBlankLines" value="false"/>
+        </properties>
+    </rule>
+    <!-- Forbid consecutive empty lines, turned off by PSR-12 -> turning back on -->
+    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace.EmptyLines">
+        <severity>5</severity>
+    </rule>
 
     <rule ref="SunAsterisk.ControlStructures.NoUselessElse"/>
     <rule ref="SunAsterisk.NamingConventions.CamelCaseVariable"/>
