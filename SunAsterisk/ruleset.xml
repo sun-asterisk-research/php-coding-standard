@@ -68,12 +68,6 @@
         </properties>
     </rule>
     <rule ref="Generic.WhiteSpace.IncrementDecrementSpacing"/>
-    <!-- Force indentation of exact 4 spaces for each level -->
-    <rule ref="Generic.WhiteSpace.ScopeIndent">
-        <properties>
-            <property name="exact" value="true"/>
-        </properties>
-    </rule>
 
     <rule ref="PEAR.Commenting.InlineComment"/>
     <rule ref="PEAR.WhiteSpace.ObjectOperatorIndent"/>
